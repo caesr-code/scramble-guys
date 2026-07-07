@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Scramble Royale</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="scene"></canvas>
+
+    <!-- ===================== MENU SCREEN ===================== -->
+    <div id="menu-screen" class="screen">
+      <div class="menu-panel">
+        <h1 class="game-title"><span class="t-scramble">SCRAMBLE</span><span class="t-royale">ROYALE</span></h1>
+        <p class="subtitle">last blob standing wins</p>
+
+        <div class="menu-field">
+          <label for="name-input">YOUR NAME</label>
+          <input id="name-input" maxlength="14" placeholder="Blob" autocomplete="off" />
+        </div>
+        <div class="profile-strip">
+          <div class="bean-preview" id="bean-preview"><span></span></div>
+          <div class="profile-info">
+            <strong>Battle Pass Lv <span id="bp-level">1</span></strong>
+            <div class="bp-track"><div id="bp-fill"></div></div>
+            <small id="bp-reward">Next: Star Belt</small><small class="crown-readout">👑 <span id="crown-count">0</span> crowns</small>
+          </div>
+          <button id="customize-btn" class="mini-btn">CUSTOMIZE</button>
+          <button id="pass-btn" class="mini-btn">PASS</button>
+        </div>
+
+        <div id="customize-panel" class="customize-panel locker-panel hidden">
+          <div class="panel-head">
+            <div>
+              <small>LOCKER</small>
+              <h3>Customize Bean</h3>
+            </div>
+            <button class="mini-btn close-panel" data-close="customize-panel">CLOSE</button>
+          </div>
+          <div class="locker-grid">
+            <div class="locker-preview"><div class="bean-preview big" id="bean-preview-big"><span></span></div><strong>Your Bean</strong><small>Pick a colour and outfit.</small></div>
+            <div>
+              <h4>Colours</h4>
+              <div class="swatch-row" id="color-swatches"></div>
+              <h4>Outfits</h4>
+              <div class="skin-row" id="skin-options"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pass-panel" class="customize-panel battle-pass-menu hidden">
+          <div class="panel-head">
+            <div>
+              <small>SEASON PASS</small>
+              <h3>Scramble Pass</h3>
+            </div>
+            <button class="mini-btn close-panel" data-close="pass-panel">CLOSE</button>
+          </div>
+          <div class="pass-hero">
+            <div class="skin-preview-card"><div id="skin-3d-preview"></div><strong id="skin-preview-label">Rookie Bean</strong><small>3D rotating skin preview</small></div>
+            <div>
+              <small>CURRENT LEVEL</small>
+              <strong id="bp-level-big">1</strong>
+            </div>
+            <div class="pass-progress-big"><div id="bp-fill-big"></div></div>
+            <p id="bp-reward-big">Next: Star Belt</p>
+          </div>
+          <div id="pass-rewards" class="pass-rewards"></div>
+        </div>
+
+
+        <div class="menu-row">
+          <button id="single-btn" class="btn btn-primary">SINGLE PLAYER</button>
+          <button id="host-btn" class="btn btn-secondary">HOST GAME</button>
+          <button id="join-btn" class="btn btn-secondary">JOIN GAME</button>
+        </div>
+
+        <div id="join-field" class="menu-field hidden">
+          <label for="room-input">ROOM CODE</label>
+          <input id="room-input" maxlength="6" placeholder="ABC123" autocomplete="off" />
+          <button id="join-confirm-btn" class="btn btn-primary">CONNECT</button>
+        </div>
+
+        <div id="room-display" class="room-display hidden">
+          <span>ROOM CODE</span>
+          <strong id="room-code-text">------</strong>
+          <p>share this code — waiting for blobs to join</p>
+        </div>
+
+        <div id="lobby-list" class="lobby-list"></div>
+
+        <button id="start-btn" class="btn btn-start hidden">START (<span id="player-count">1</span> PLAYERS)</button>
+        <p id="status-text" class="status-text"></p>
+      </div>
+    </div>
+
+    <!-- ===================== HUD ===================== -->
+    <div id="hud" class="hidden">
+      <div class="hud-top">
+        <div class="hud-players-left">
+          <span id="players-remaining">--</span> ACTIVE
+        </div>
+        <div class="hud-level-name" id="level-name">LEVEL</div>
+        <div class="hud-timer" id="hud-timer">0:00</div>
+      </div>
+      <div id="round-intro" class="round-intro hidden">
+        <div id="round-intro-title">ROUND</div>
+        <div id="countdown-number">3</div>
+        <div id="countdown-help">Get ready...</div>
+      </div>
+      <div id="spectate-hint" class="spectate-hint hidden">SPECTATING · Q / E or TAB to switch</div>
+      <div id="mobile-controls" class="hidden">
+        <div id="joystick-zone"></div>
+        <button id="jump-btn">JUMP</button>
+        <button id="dive-btn">DIVE</button>
+      </div>
+    </div>
+
+    <!-- ===================== RESULT BANNER ===================== -->
+    <div id="result-banner" class="result-banner hidden">
+      <h2 id="result-title"></h2>
+      <p id="result-sub"></p>
+    </div>
+
+    <!-- ===================== FINAL SCREEN ===================== -->
+    <div id="final-screen" class="screen hidden">
+      <div class="menu-panel">
+        <h1 class="game-title final-crown">👑</h1>
+        <h2 id="final-winner-text">WINNER WINNER</h2>
+        <button id="play-again-btn" class="btn btn-primary">BACK TO MENU</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
